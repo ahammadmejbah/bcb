@@ -40,13 +40,10 @@ def main():
                 if not pd.isna(coach_profile.iloc[0]['Picture']):  # Check if the picture column is not empty
                     image_path = coach_profile.iloc[0]['Picture']
 
-                    # Ensure the image path is in the 'assets/' folder
+                    # Check if 'assets/' is already in the image path
                     if not image_path.startswith("assets/"):
+                        # If not, add 'assets/' to the path
                         image_path = os.path.join("assets", image_path)
-
-                    # Ensure the image path has a `.JPG` extension
-                    if not image_path.lower().endswith(".jpg"):
-                        image_path = os.path.splitext(image_path)[0] + ".jpg"
 
                     # Debugging: Display the constructed path
                     st.write(f"Full Image Path: {image_path}")
