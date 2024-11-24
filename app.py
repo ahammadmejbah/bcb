@@ -41,9 +41,9 @@ def main():
                     image_path = coach_profile.iloc[0]['Picture']
 
                     # Check if 'assets/' is already in the image path
-                    if not image_path.startswith("bcb/assets/"):
+                    if not image_path.startswith("bcb/"):
                         # If not, add 'assets/' to the path
-                        image_path = os.path.join("bcb/assets", image_path)
+                        image_path = os.path.join("assets", image_path)
 
                     # Debugging: Display the constructed path
                     st.write(f"Full Image Path: {image_path}")
