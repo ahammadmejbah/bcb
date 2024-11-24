@@ -39,7 +39,7 @@ def main():
             with col1:
                 if not pd.isna(coach_profile.iloc[0]['Picture']):  # Check if the picture column is not empty
                     # Construct image path
-                    image_path = os.path.join("static", "assets", "images", coach_profile.iloc[0]['Picture'])
+                    image_path = os.path.join("static", coach_profile.iloc[0]['Picture'])
 
                     # Debugging: Display the image path
                     st.write(f"Image Path: {image_path}")
