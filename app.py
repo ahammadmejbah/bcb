@@ -38,23 +38,20 @@ def main():
             # Display image in the first column
             with col1:
                 if not pd.isna(coach_profile.iloc[0]['Picture']):  # Check if the picture column is not empty
-                    relative_image_path = coach_profile.iloc[0]['Picture']
-                    
-                    # Prepend 'assets/images/' to the relative image path if not already included
-                    if not relative_image_path.startswith("assets/images/"):
-                        relative_image_path = os.path.join("assets/images", relative_image_path)
-                    
-                    # Generate the absolute path for debugging
-                    absolute_image_path = os.path.abspath(relative_image_path)
+                    # Construct image path
+                    image_path = os.path.join("static", "assets", "images", coach_profile.iloc[0]['Picture'])
+
+                    # Debugging: Display the image path
+                    st.write(f"Image Path: {image_path}")
 
                     try:
                         # Open and display the image
-                        image = Image.open(relative_image_path)
+                        image = Image.open(image_path)
                         st.image(image, width=170, caption=f"{selected_coach}'s Picture")
                     except FileNotFoundError:
-                        st.warning(f"Image file not found: {absolute_image_path}")
+                        st.warning(f"Image file not found: {image_path}")
                     except UnidentifiedImageError:
-                        st.warning(f"Could not identify image format: {absolute_image_path}")
+                        st.warning(f"Could not identify image format: {image_path}")
                     except Exception as e:
                         st.error(f"Error displaying image: {e}")
                 else:
