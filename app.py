@@ -5,7 +5,7 @@ import os
 
 def main():
     st.title("Coach Profile Viewer")
-    
+
     # Path to the CSV file
     data_file = "coaches_data.csv"
 
@@ -40,19 +40,16 @@ def main():
                 if not pd.isna(coach_profile.iloc[0]['Picture']):  # Check if the picture column is not empty
                     relative_image_path = coach_profile.iloc[0]['Picture']
                     
-                    # Prepend 'assets/' to the relative image path if not already included
-                    if not relative_image_path.startswith("assets/"):
-                        relative_image_path = os.path.join("assets", relative_image_path)
+                    # Prepend 'assets/images/' to the relative image path if not already included
+                    if not relative_image_path.startswith("assets/images/"):
+                        relative_image_path = os.path.join("assets/images", relative_image_path)
                     
-                    # Generate the absolute image path
+                    # Generate the absolute path for debugging
                     absolute_image_path = os.path.abspath(relative_image_path)
-
-                    # Debugging: Display the absolute path
-                    st.write(f"Constructed Absolute Image Path: {absolute_image_path}")
 
                     try:
                         # Open and display the image
-                        image = Image.open(absolute_image_path)
+                        image = Image.open(relative_image_path)
                         st.image(image, width=170, caption=f"{selected_coach}'s Picture")
                     except FileNotFoundError:
                         st.warning(f"Image file not found: {absolute_image_path}")
