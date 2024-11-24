@@ -38,20 +38,6 @@ def main():
             # Display image in the first column
             with col1:
                 if not pd.isna(coach_profile.iloc[0]['Picture']):  # Check if the picture column is not empty
-<<<<<<< HEAD
-                    image_path = coach_profile.iloc[0]['Picture']
-
-                    # Ensure the image path is in the 'assets/' folder
-                    if not image_path.startswith("assets/"):
-                        image_path = os.path.join("assets", image_path)
-
-                    # Ensure the image path has a `.JPG` extension
-                    if not image_path.lower().endswith(".jpg"):
-                        image_path = os.path.splitext(image_path)[0] + ".jpg"
-
-                    # Debugging: Display the constructed path
-                    st.write(f"Full Image Path: {image_path}")
-=======
                     relative_image_path = coach_profile.iloc[0]['Picture']
                     
                     # Prepend 'assets/images/' to the relative image path if not already included
@@ -60,7 +46,6 @@ def main():
                     
                     # Generate the absolute path for debugging
                     absolute_image_path = os.path.abspath(relative_image_path)
->>>>>>> 73252bece480537c966a937feca714150ce8f53c
 
                     try:
                         # Open and display the image
