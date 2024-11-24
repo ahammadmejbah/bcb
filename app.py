@@ -43,7 +43,7 @@ def main():
                     # Check if 'assets/' is already in the image path
                     if not image_path.startswith("bcb/"):
                         # If not, add 'assets/' to the path
-                        image_path = os.path.join("assets", image_path)
+                        image_path = os.path.join("", image_path)
 
                     # Debugging: Display the constructed path
                     st.write(f"Full Image Path: {image_path}")
