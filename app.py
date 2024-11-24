@@ -5,8 +5,8 @@ import os
 
 def main():
     st.title("Coach Profile Viewer")
-    
-    # Path to the CSV file (ensure it is in the same folder or adjust the path accordingly)
+
+    # Path to the CSV file
     data_file = "coaches_data.csv"
 
     try:
@@ -38,6 +38,7 @@ def main():
             # Display image in the first column
             with col1:
                 if not pd.isna(coach_profile.iloc[0]['Picture']):  # Check if the picture column is not empty
+<<<<<<< HEAD
                     image_path = coach_profile.iloc[0]['Picture']
 
                     # Ensure the image path is in the 'assets/' folder
@@ -50,14 +51,25 @@ def main():
 
                     # Debugging: Display the constructed path
                     st.write(f"Full Image Path: {image_path}")
+=======
+                    relative_image_path = coach_profile.iloc[0]['Picture']
+                    
+                    # Prepend 'assets/images/' to the relative image path if not already included
+                    if not relative_image_path.startswith("assets/images/"):
+                        relative_image_path = os.path.join("assets/images", relative_image_path)
+                    
+                    # Generate the absolute path for debugging
+                    absolute_image_path = os.path.abspath(relative_image_path)
+>>>>>>> 73252bece480537c966a937feca714150ce8f53c
 
                     try:
-                        image = Image.open(image_path)
+                        # Open and display the image
+                        image = Image.open(relative_image_path)
                         st.image(image, width=170, caption=f"{selected_coach}'s Picture")
                     except FileNotFoundError:
-                        st.warning(f"Image file not found: {image_path}")
+                        st.warning(f"Image file not found: {absolute_image_path}")
                     except UnidentifiedImageError:
-                        st.warning(f"Could not identify image format: {image_path}")
+                        st.warning(f"Could not identify image format: {absolute_image_path}")
                     except Exception as e:
                         st.error(f"Error displaying image: {e}")
                 else:
